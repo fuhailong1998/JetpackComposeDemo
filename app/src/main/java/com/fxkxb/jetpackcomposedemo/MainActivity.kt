@@ -45,6 +45,7 @@ fun MyApp(names: List<String> = listOf("Android", "Thundersoft")) {
 @SuppressLint("UnrememberedMutableState")
 @Composable
 private fun Greeting(name: String) {
+    // 使用 mutableStateOf 函数，使 Compose 重组 读取该State.
     var expanded = remember {
         mutableStateOf(false);
     }
@@ -58,8 +59,15 @@ private fun Greeting(name: String) {
     ) {
         // 每行内边距24dp
         Row(modifier = Modifier.padding(24.dp)) {
+
             Column(modifier = Modifier
+                // 充满全屏
+                .fillMaxWidth()
+                // weight修饰符使元素填充所有可用空间，使其flexible
+                // 有效地推开其他没有权重的inflexible元素。
+                // 使 fillMaxWidth 修饰符无效。
                 .weight(1f)
+                // 底部延伸出像素
                 .padding(bottom = extraPadding)
             ) {
                 Text(text = "Hello,")
